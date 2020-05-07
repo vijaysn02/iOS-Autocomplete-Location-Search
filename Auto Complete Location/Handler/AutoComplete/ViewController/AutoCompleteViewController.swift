@@ -35,7 +35,7 @@ extension AutoCompleteViewController {
     
     func initialViewSetup() {
         searchCompleter.delegate = self
-        searchCompleter.filterType = .locationsOnly
+        searchCompleter.resultTypes = .pointOfInterest
     }
     
 }
