@@ -9,12 +9,12 @@
 import UIKit
 import MapKit
 
-//MARK: - Protocol
+//MARK: - Protocol - to return back values to view controller
 protocol AutoCompleteDelegate {
     func selectedLocation(location:CLLocationCoordinate2D,locationName:String)
 }
 
-//MARK: - Location SearchTypes
+//MARK: - Location Search Types - to choose the correct type of search
 enum LocationSearchTypes {
     
     case address
@@ -34,7 +34,7 @@ enum LocationSearchTypes {
     }
 }
 
-//MARK: - View Controller Initialization
+//MARK: - View Controller - Initialization
 class AutoCompleteViewController: UIViewController {
     
     var searchCompleter = MKLocalSearchCompleter()
@@ -52,7 +52,7 @@ class AutoCompleteViewController: UIViewController {
 }
 
 
-//MARK: - Initial View Setup
+//MARK: - Initial Setup - setting up the search type and delegate
 extension AutoCompleteViewController {
     
     func initialViewSetup() {
@@ -72,7 +72,7 @@ extension AutoCompleteViewController {
 }
 
 
-//MARK: - Search Bar Delegate
+//MARK: - Search Bar Delegate - to detect the text change in search bar.
 extension AutoCompleteViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -80,7 +80,7 @@ extension AutoCompleteViewController: UISearchBarDelegate {
     }
 }
 
-//MARK: - Local Search Delegate
+//MARK: - Local Search Delegate - to get the result for the location query
 extension AutoCompleteViewController: MKLocalSearchCompleterDelegate {
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
@@ -93,7 +93,7 @@ extension AutoCompleteViewController: MKLocalSearchCompleterDelegate {
     }
 }
 
-//MARK: - Table View Data Source
+//MARK: - Table View - Data Source
 extension AutoCompleteViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -107,13 +107,15 @@ extension AutoCompleteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let searchResult = searchResults[indexPath.row]
         let cell = LocationCell(style: .subtitle, reuseIdentifier: nil)
+        
+        //Setting up the address
         cell.textLabel?.text = searchResult.title
         cell.detailTextLabel?.text = searchResult.subtitle
         return cell
     }
 }
 
-//MARK: - Table View Delegate
+//MARK: - Table View - Delegate
 extension AutoCompleteViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -126,6 +128,8 @@ extension AutoCompleteViewController: UITableViewDelegate {
         search.start { (response, error) in
             if let response = response {
                 let coordinate = response.mapItems[0].placemark.coordinate
+                
+                //Sending back the chosen location
                 self.delegate?.selectedLocation(location: coordinate, locationName: completion.title)
                 Router.closeViewController(viewController: self)
             }

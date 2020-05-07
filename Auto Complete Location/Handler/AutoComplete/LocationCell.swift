@@ -16,7 +16,6 @@ class LocationCell:UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initialSetup()
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

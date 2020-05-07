@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-//MARK: - Auto Complete
+//MARK: - Router - for Page Navigation
 class Router {
     
     static func navigateToAutoCompleteViewController(parentViewController:UIViewController,searchType:LocationSearchTypes) {

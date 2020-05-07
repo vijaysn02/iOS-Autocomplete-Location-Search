@@ -12,12 +12,10 @@ import CoreLocation
 //MARK: - View Controller - Initialization
 class ViewController: UIViewController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
 
 }
 
@@ -25,6 +23,7 @@ class ViewController: UIViewController {
 extension ViewController {
     
     @IBAction func locationButtonClicked(_ sender: Any) {
+        //Triggering the Autocomplete search
         Router.navigateToAutoCompleteViewController(parentViewController: self,searchType: .pointOfInterest)
     }
     
