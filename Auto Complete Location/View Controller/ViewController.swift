@@ -25,7 +25,7 @@ class ViewController: UIViewController {
 extension ViewController {
     
     @IBAction func locationButtonClicked(_ sender: Any) {
-        Router.navigateToAutoCompleteViewController(parentViewController: self)
+        Router.navigateToAutoCompleteViewController(parentViewController: self,searchType: .pointOfInterest)
     }
     
 }
@@ -33,7 +33,7 @@ extension ViewController {
 //MARK: - Auto Complete Delegate
 extension ViewController:AutoCompleteDelegate {
   
-    func didSelectLocation(location: CLLocationCoordinate2D, locationName: String) {
+    func selectedLocation(location: CLLocationCoordinate2D, locationName: String) {
         Toast.showasync(message: locationName, controller: self)
     }
     

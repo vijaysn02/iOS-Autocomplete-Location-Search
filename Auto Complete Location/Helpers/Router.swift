@@ -12,7 +12,7 @@ import UIKit
 //MARK: - Auto Complete
 class Router {
     
-    static func navigateToAutoCompleteViewController(parentViewController:UIViewController) {
+    static func navigateToAutoCompleteViewController(parentViewController:UIViewController,searchType:LocationSearchTypes) {
           DispatchQueue.main.async {
               
               let transition = CATransition()
@@ -23,9 +23,11 @@ class Router {
     
               let storyboard = UIStoryboard(name: "AutoComplete", bundle: nil)
               let viewControllerToPresent = storyboard.instantiateViewController(withIdentifier: "AutoCompleteViewController") as! AutoCompleteViewController
-              
+            
+              viewControllerToPresent.resultType = searchType
               viewControllerToPresent.modalPresentationStyle = .fullScreen
-            viewControllerToPresent.delegate = (parentViewController as! AutoCompleteDelegate)
+              viewControllerToPresent.delegate = (parentViewController as! AutoCompleteDelegate)
+            
               
               parentViewController.present(viewControllerToPresent, animated: false, completion: nil)
               

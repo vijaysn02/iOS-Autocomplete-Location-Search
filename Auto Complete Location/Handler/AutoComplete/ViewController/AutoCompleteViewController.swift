@@ -9,8 +9,29 @@
 import UIKit
 import MapKit
 
+//MARK: - Protocol
 protocol AutoCompleteDelegate {
-    func didSelectLocation(location:CLLocationCoordinate2D,locationName:String)
+    func selectedLocation(location:CLLocationCoordinate2D,locationName:String)
+}
+
+//MARK: - Location SearchTypes
+enum LocationSearchTypes {
+    
+    case address
+    case query
+    case pointOfInterest
+    
+    var searchType : MKLocalSearchCompleter.ResultType {
+     
+        switch self {
+      
+        case .address: return .address
+        case .query: return .query
+        case .pointOfInterest: return .pointOfInterest
+      
+      }
+        
+    }
 }
 
 //MARK: - View Controller Initialization
@@ -20,6 +41,7 @@ class AutoCompleteViewController: UIViewController {
     var searchResults = [MKLocalSearchCompletion]()
     
     var delegate:AutoCompleteDelegate?
+    var resultType:LocationSearchTypes = .address
     
     @IBOutlet weak var searchResultsTableView: UITableView!
     
@@ -35,7 +57,7 @@ extension AutoCompleteViewController {
     
     func initialViewSetup() {
         searchCompleter.delegate = self
-        searchCompleter.resultTypes = .pointOfInterest
+        searchCompleter.resultTypes = resultType.searchType
     }
     
 }
@@ -54,7 +76,6 @@ extension AutoCompleteViewController {
 extension AutoCompleteViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         searchCompleter.queryFragment = searchText
     }
 }
@@ -105,7 +126,7 @@ extension AutoCompleteViewController: UITableViewDelegate {
         search.start { (response, error) in
             if let response = response {
                 let coordinate = response.mapItems[0].placemark.coordinate
-                self.delegate?.didSelectLocation(location: coordinate, locationName: completion.title)
+                self.delegate?.selectedLocation(location: coordinate, locationName: completion.title)
                 Router.closeViewController(viewController: self)
             }
             
