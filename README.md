@@ -125,4 +125,4 @@ There are four important section in this handler. (i) Defining the Location Sear
 
 
 
-### Check out my Post about Location AutoComplete Search : [Location AutoComplete Search](https://vijaysn.com/2020/04/23/ios-av-player/)
+### Check out my Post about Location AutoComplete Search : [Location AutoComplete Search](https://vijaysn.com/uncategorized/ios-location-autocomplete)
