@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="awQ-W5-6dL">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Auto Complete View Controller-->
+        <scene sceneID="6wn-3d-ZSF">
+            <objects>
+                <viewController storyboardIdentifier="AutoCompleteViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="awQ-W5-6dL" customClass="AutoCompleteViewController" customModule="Auto_Complete_Location" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nJM-mz-ZSP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfT-rB-CO6" userLabel="Navigation View" customClass="NavigationView" customModule="Auto_Complete_Location" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pC-Y7-yme" userLabel="Back Button">
+                                        <rect key="frame" x="20" y="39" width="19.5" height="17.5"/>
+                                        <state key="normal" backgroundImage="clear" catalog="system"/>
+                                        <connections>
+                                            <action selector="backButtonClickedWithSender:" destination="awQ-W5-6dL" eventType="touchUpInside" id="bRx-C0-iEh"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJ4-mb-pgs" customClass="NavigationTitleLabel" customModule="Auto_Complete_Location" customModuleProvider="target">
+                                        <rect key="frame" x="137" y="36" width="140.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="APQ-k5-3eD"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="B0m-3r-tRP"/>
+                                    <constraint firstItem="nJ4-mb-pgs" firstAttribute="centerY" secondItem="pfT-rB-CO6" secondAttribute="centerY" multiplier="1.2" id="IIw-17-q5a"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="Sdo-zj-Pxr"/>
+                                    <constraint firstItem="nJ4-mb-pgs" firstAttribute="centerX" secondItem="pfT-rB-CO6" secondAttribute="centerX" id="UdG-sF-VkZ"/>
+                                    <constraint firstItem="6pC-Y7-yme" firstAttribute="centerY" secondItem="pfT-rB-CO6" secondAttribute="centerY" multiplier="1.2" id="VqL-xZ-MMZ"/>
+                                    <constraint firstItem="6pC-Y7-yme" firstAttribute="leading" secondItem="pfT-rB-CO6" secondAttribute="leading" constant="20" id="iSq-ID-PWN"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fzE-CQ-meZ">
+                                <rect key="frame" x="0.0" y="80" width="414" height="782"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NcA-om-TaB">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ftA-CU-ChV"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="awQ-W5-6dL" id="t3N-w5-HRg"/>
+                                        </connections>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jLE-Nr-XjC" customClass="PrimaryTableView" customModule="Auto_Complete_Location" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="414" height="722"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="awQ-W5-6dL" id="9Fi-er-rgq"/>
+                                            <outlet property="delegate" destination="awQ-W5-6dL" id="WpJ-xO-uiJ"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fzE-CQ-meZ" firstAttribute="leading" secondItem="8RJ-dC-c0a" secondAttribute="leading" id="6Jy-3S-p6V"/>
+                            <constraint firstItem="8RJ-dC-c0a" firstAttribute="bottom" secondItem="fzE-CQ-meZ" secondAttribute="bottom" id="BXx-xh-xno"/>
+                            <constraint firstItem="pfT-rB-CO6" firstAttribute="top" secondItem="nJM-mz-ZSP" secondAttribute="top" id="DzY-ko-umx"/>
+                            <constraint firstItem="fzE-CQ-meZ" firstAttribute="top" secondItem="pfT-rB-CO6" secondAttribute="bottom" id="Rl5-rM-jWf"/>
+                            <constraint firstItem="pfT-rB-CO6" firstAttribute="trailing" secondItem="8RJ-dC-c0a" secondAttribute="trailing" id="YJD-Zv-XXP"/>
+                            <constraint firstItem="pfT-rB-CO6" firstAttribute="leading" secondItem="8RJ-dC-c0a" secondAttribute="leading" id="bcR-At-gaQ"/>
+                            <constraint firstItem="8RJ-dC-c0a" firstAttribute="trailing" secondItem="fzE-CQ-meZ" secondAttribute="trailing" id="cHX-48-fQd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8RJ-dC-c0a"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchResultsTableView" destination="jLE-Nr-XjC" id="hAI-zJ-65v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZxC-3t-sFy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="134"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="clear" catalog="system" width="64" height="56"/>
+    </resources>
+</document>
